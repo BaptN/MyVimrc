@@ -90,6 +90,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Shortcuts
+nnoremap <C-c> :q<CR>
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -118,7 +119,8 @@ nnoremap <C-t>  :tabnew<CR>
 inoremap <C-t>  <Esc>:tabnew<CR>i
 nnoremap <C-k>  :tabclose<CR>
 inoremap <C-k>  <Esc>:tabclose<CR>i
-" Move between splitted windows
+" Splitted windows
+nnoremap <A-&> :vsp<CR>
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
