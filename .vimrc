@@ -22,6 +22,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/nerdtree-ack'
+Bundle 'terryma/vim-multiple-cursors'
 
 " Color Themes
 colorscheme molokai
