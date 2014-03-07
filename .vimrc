@@ -110,6 +110,8 @@ inoremap <C-e> <Esc>:NERDTreeToggle<CR>i
 " Undo, Redo
 nnoremap <C-z>  :undo<CR>
 nnoremap <C-y>  :redo<CR>
+inoremap <C-z>  <Esc>:undo<CR>i
+inoremap <C-y>  <Esc>:redo<CR>i
 " Tabs
 let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled = 1
@@ -148,7 +150,7 @@ endif
 if (bufnr("%") == todelbufNr)
     new
 endif
-exe "bd".todelbufNr
+exe "bd".todelbufNr."!"
 endfunction
 
 " this machine config
