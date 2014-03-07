@@ -134,8 +134,7 @@ noremap  <Leader>g :GitGutterToggle<CR>
 " Lazy
 nnoremap <C-c> :q<CR>
 nnoremap <C-s>  :w<CR>
-inoremap <C-s>  <Esc>:w<CR>i
-
+inoremap <C-s>  <Esc>:w<CR>
 
 " TODO : move to more appropriate place
 function! CleanClose()
@@ -150,7 +149,7 @@ endif
 if (bufnr("%") == todelbufNr)
     new
 endif
-exe "bd".todelbufNr."!"
+exe "bd!".todelbufNr
 endfunction
 
 " this machine config
