@@ -148,7 +148,9 @@ let g:multi_cursor_prev_key='<C-s>'
 let g:multi_cursor_skip_key='<C-q>'
 let g:multi_cursor_quit_key='<Esc>'
 " Git
-noremap  <Leader>g :GitGutterToggle<CR>
+noremap  <A-g> :GitGutterToggle<CR>
+" YankRing
+nnoremap <A-p> :YRShow<CR>
 
 " TODO : move to more appropriate place
 function! CleanClose()
