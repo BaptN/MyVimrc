@@ -31,6 +31,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/YankRing.vim'
 "Multi cursor feature (inspired from ST2)
 Bundle 'terryma/vim-multiple-cursors'
+"Scratch buffer
+Bundle 'mtth/scratch.vim'
 " Color Themes
 colorscheme molokai
 " set background=dark
@@ -111,24 +113,21 @@ nnoremap <C-y>  :redo<CR>
 inoremap <C-z>  <Esc>:undo<CR>i
 inoremap <C-y>  <Esc>:redo<CR>i
 " Tabs
-nnoremap <A-b>  :tabprevious<CR>
-inoremap <A-b>  <Esc>:tabprevious<CR>i
-nnoremap <A-n>  :tabnext<CR>
-inoremap <A-n>  <Esc>:tabnext<CR>i
-nnoremap <A-t>  :tabnew<CR>
-inoremap <A-t>  <Esc>:tabnew<CR>i
-nnoremap <A-k>  :tabclose<CR>
-inoremap <A-k>  <Esc>:tabclose<CR>i
+nnoremap <M-b>  :tabprevious<CR>
+inoremap <M-b>  <Esc>:tabprevious<CR>i
+nnoremap <M-n>  :tabnext<CR>
+inoremap <M-n>  <Esc>:tabnext<CR>i
+nnoremap <M-t>  :tabnew<CR>
+inoremap <M-t>  <Esc>:tabnew<CR>i
+nnoremap <M-k>  :tabclose<CR>
+inoremap <M-k>  <Esc>:tabclose<CR>i
 " Splitted windows
-nnoremap <A-&> :vsp<CR>
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-" Lazy
-nnoremap <C-c> :q<CR>
-nnoremap <C-s>  :w<CR>
-inoremap <C-s>  <Esc>:w<CR>
+nnoremap <M-&> :vsp<CR>
+nmap <silent> <M-Up> :wincmd k<CR>
+nmap <silent> <M-Down> :wincmd j<CR>
+nmap <silent> <M-Left> :wincmd h<CR>
+nmap <silent> <M-Right> :wincmd l<CR>
+
 
 " Plugins specifics
 " Use <C-L> to clear the highlighting of :set hlsearch.
@@ -136,11 +135,14 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
 " NERDTreeToggle
-nnoremap <A-e> :NERDTreeToggle<CR>
-inoremap <A-e> <Esc>:NERDTreeToggle<CR>i
+nnoremap <M-e> :NERDTreeToggle<CR>
+inoremap <M-e> <Esc>:NERDTreeToggle<CR>i
 " CtrlP => becomes AltO ;)
-nnoremap <A-o> :CtrlP<CR>
-inoremap <A-o> <Esc>:CtrlP<CR>
+nnoremap <M-o> :CtrlP<CR>
+inoremap <M-o> <Esc>:CtrlP<CR>
+" Easy scratch
+nnoremap <M-s> :Scratch<CR>
+inoremap <M-s> <Esc>:Scratch<CR>
 " Multiple cursor
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-a>'
@@ -148,9 +150,9 @@ let g:multi_cursor_prev_key='<C-s>'
 let g:multi_cursor_skip_key='<C-q>'
 let g:multi_cursor_quit_key='<Esc>'
 " Git
-noremap  <A-g> :GitGutterToggle<CR>
+noremap  <M-g> :GitGutterToggle<CR>
 " YankRing
-nnoremap <A-p> :YRShow<CR>
+nnoremap <M-p> :YRShow<CR>
 
 " TODO : move to more appropriate place
 function! CleanClose()
