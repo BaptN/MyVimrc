@@ -34,8 +34,8 @@ Bundle 'terryma/vim-multiple-cursors'
 "Scratch buffer
 Bundle 'mtth/scratch.vim'
 " Color Themes
-colorscheme molokai
-" set background=dark
+colorscheme solarized
+set background=dark
 
 " Vim config
 if has('autocmd')
@@ -99,7 +99,7 @@ let g:did_UltiSnips_vim_after = 1
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
+let g:airline_theme='solarized'
 
 " Shortcuts
 " Vim specifics :
