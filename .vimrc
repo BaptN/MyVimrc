@@ -25,6 +25,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/nerdtree-ack'
+"Tag lits
+Bundle 'vim-scripts/taglist.vim'
 "Fuzzy file opener (inspired from ST2)
 Bundle 'kien/ctrlp.vim'
 "Registers management
@@ -33,6 +35,15 @@ Bundle 'vim-scripts/YankRing.vim'
 Bundle 'terryma/vim-multiple-cursors'
 "Scratch buffer
 Bundle 'mtth/scratch.vim'
+"Syntax checking
+Bundle 'scrooloose/syntastic'
+" Clojure
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-leiningen'
+Bundle 'tpope/vim-classpath'
+Bundle 'guns/vim-clojure-static'
+Bundle 'vim-scripts/paredit.vim'
+
 " Color Themes
 colorscheme solarized
 set background=dark
@@ -100,7 +111,11 @@ let g:did_UltiSnips_vim_after = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
-
+let g:syntastic_php_checkers = ['php']
+let FILETAG=expand("./tags")
+if filereadable(FILETAG)
+  set tags=tags
+endif
 " Shortcuts
 " Vim specifics :
 " Buffers
@@ -123,11 +138,12 @@ nnoremap <M-k>  :tabclose<CR>
 inoremap <M-k>  <Esc>:tabclose<CR>i
 " Splitted windows
 nnoremap <M-&> :vsp<CR>
-nmap <silent> <M-Up> :wincmd k<CR>
-nmap <silent> <M-Down> :wincmd j<CR>
 nmap <silent> <M-Left> :wincmd h<CR>
 nmap <silent> <M-Right> :wincmd l<CR>
+" Ctags
 
+nnoremap <M-Up>  <C-]>
+nnoremap <M-Down>  <C-T>
 
 " Plugins specifics
 " Use <C-L> to clear the highlighting of :set hlsearch.
@@ -143,6 +159,9 @@ inoremap <M-o> <Esc>:CtrlP<CR>
 " Easy scratch
 nnoremap <M-s> :Scratch<CR>
 inoremap <M-s> <Esc>:Scratch<CR>
+"Tag list
+nnoremap <M-i> :TlistToggle<CR>
+inoremap <M-i> <Esc>:TlistToggle<CR>
 " Multiple cursor
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-a>'
