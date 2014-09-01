@@ -38,10 +38,13 @@ Bundle 'mtth/scratch.vim'
 "Syntax checking
 Bundle 'scrooloose/syntastic'
 " Clojure
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-leiningen'
 Bundle 'tpope/vim-classpath'
+Bundle "tpope/vim-dispatch"
+Bundle 'tpope/vim-leiningen'
 Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-highlight'
 Bundle 'vim-scripts/paredit.vim'
 
 " Color Themes
@@ -172,6 +175,12 @@ let g:multi_cursor_quit_key='<Esc>'
 noremap  <M-g> :GitGutterToggle<CR>
 " YankRing
 nnoremap <M-p> :YRShow<CR>
+" Rainbow parenthesis
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 
 " TODO : move to more appropriate place
 function! CleanClose()
