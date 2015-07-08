@@ -6,46 +6,50 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Bundles list
-"Snippets management
+" Snippets management
 Bundle 'SirVer/ultisnips'
-"Comment/uncomment your code easily
+" Comment/uncomment your code easily
 Bundle 'tomtom/tcomment_vim'
-"Info lines in top and bottom of screen
+" Info lines in top and bottom of screen
 Bundle 'bling/vim-airline'
-"Git +/- bar near line numbers
+" Git +/- bar near line numbers
 Bundle 'airblade/vim-gitgutter'
-"Exec git commands directly from vim
+" Exec git commands directly from vim
 Bundle 'tpope/vim-fugitive'
 " Colorscheme
 Bundle 'flazz/vim-colorschemes'
-"Autocompletion engine
+" Autocompletion engine
 Bundle 'Valloric/YouCompleteMe'
-"Folder explorer
+" Folder explorer
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/nerdtree-ack'
-"Tag lits
+" Tag lits
 Bundle 'vim-scripts/taglist.vim'
-"Fuzzy file opener (inspired from ST2)
+" Fuzzy file opener (inspired from ST2)
 Bundle 'kien/ctrlp.vim'
-"Registers management
+" Registers management
 Bundle 'vim-scripts/YankRing.vim'
-"Multi cursor feature (inspired from ST2)
+" Multi cursor feature (inspired from ST2)
 Bundle 'terryma/vim-multiple-cursors'
-"Scratch buffer
+" Scratch buffer
 Bundle 'mtth/scratch.vim'
-"Syntax checking
+" Syntax checking
 Bundle 'scrooloose/syntastic'
+" PHP
+Bundle 'shawncplus/phpcomplete.vim'
+Bundle 'evidens/vim-twig'
+Bundle 'thinca/vim-quickrun'
 " Clojure
-Bundle 'tpope/vim-classpath'
-Bundle "tpope/vim-dispatch"
-Bundle 'tpope/vim-leiningen'
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
+"Bundle 'tpope/vim-classpath'
+"Bundle "tpope/vim-dispatch"
+"Bundle 'tpope/vim-leiningen'
+"Bundle 'guns/vim-clojure-static'
+"Bundle 'tpope/vim-fireplace'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'guns/vim-clojure-highlight'
-Bundle 'vim-scripts/paredit.vim'
+"Bundle 'guns/vim-clojure-highlight'
+"Bundle 'vim-scripts/paredit.vim'
 
 " Color Themes
 colorscheme solarized
@@ -100,7 +104,9 @@ set fileformats=unix,dos,mac
 set completeopt=menuone,longest,preview
 let mapleader = ','
 
-" Plugins config
+autocmd FileType php set keywordprg=pman
+
+" Plugins configarray_key_exists(
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/* 
 " Disable tComment to escape some entities
 let g:tcomment#replacements_xml={}
@@ -148,6 +154,9 @@ nmap <silent> <M-Right> :wincmd l<CR>
 nnoremap <M-Up>  <C-]>
 nnoremap <M-Down>  <C-T>
 
+:map <C-i> i_<Esc>r
+:map <C-a> a_<Esc>r
+
 " Plugins specifics
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
@@ -181,7 +190,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-
 " TODO : move to more appropriate place
 function! CleanClose()
 let todelbufNr = bufnr("%")
@@ -198,10 +206,14 @@ endif
 exe "bd!".todelbufNr
 endfunction
 
+" Bug with lastly used taglist ?
+:iunmap é
+
 :command! Cs :e ~/Tools/MyVimrc/cheatsheet.md
 :command! Vrc :e ~/.vimrc
 
 
+let g:quickrun_config = {}
 
 " this machine config
 if filereadable(expand("~/.vimrc.local"))
