@@ -1,67 +1,58 @@
 set nocompatible
 filetype off
 " Vundle call
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 
-" Bundles list
-" Snippets management
-Bundle 'SirVer/ultisnips'
+" Plugins list
 " Comment/uncomment your code easily
-Bundle 'tomtom/tcomment_vim'
+Plugin 'scrooloose/nerdcommenter'
 " Info lines in top and bottom of screen
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Git +/- bar near line numbers
-Bundle 'airblade/vim-gitgutter'
-" Exec git commands directly from vim
-Bundle 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 " Colorscheme
-Bundle 'flazz/vim-colorschemes'
+" Plugin 'altercation/vim-colors-solarized'
 " Autocompletion engine
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " Folder explorer
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/nerdtree-ack'
-" Tag lits
-Bundle 'vim-scripts/taglist.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/nerdtree-ack'
 " Fuzzy file opener (inspired from ST2)
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Registers management
-Bundle 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/YankRing.vim'
 " Multi cursor feature (inspired from ST2)
-Bundle 'terryma/vim-multiple-cursors'
-" Scratch buffer
-Bundle 'mtth/scratch.vim'
+Plugin 'terryma/vim-multiple-cursors'
 " Syntax checking
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " PHP
-Bundle 'shawncplus/phpcomplete.vim'
-Bundle 'evidens/vim-twig'
-Bundle 'thinca/vim-quickrun'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'evidens/vim-twig'
+Plugin 'thinca/vim-quickrun'
 " Clojure
-"Bundle 'tpope/vim-classpath'
-"Bundle "tpope/vim-dispatch"
-"Bundle 'tpope/vim-leiningen'
-"Bundle 'guns/vim-clojure-static'
-"Bundle 'tpope/vim-fireplace'
-Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'guns/vim-clojure-highlight'
-"Bundle 'vim-scripts/paredit.vim'
+"Plugin 'tpope/vim-classpath'
+"Plugin 'tpope/vim-dispatch'
+"Plugin 'tpope/vim-leiningen'
+"Plugin 'guns/vim-clojure-static'
+"Plugin 'tpope/vim-fireplace'
+"Plugin 'kien/rainbow_parentheses.vim'
+"Plugin 'guns/vim-clojure-highlight'
+"Plugin 'vim-scripts/paredit.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'kana/vim-fakeclip'
+call vundle#end()
 
-" Color Themes
-colorscheme solarized
-set background=dark
 
 " Vim config
-if has('autocmd')
-  filetype plugin indent on
-endif
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
+filetype plugin indent on
+syntax enable
+set background=dark
 set autoindent
 set backspace=indent,eol,start
 set complete-=i
@@ -86,16 +77,13 @@ set encoding=utf-8
 set tabstop=2 shiftwidth=2 expandtab
 set listchars=tab:▒░,trail:▓
 set list
-set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 set number
 set hlsearch
 set ignorecase
 set smartcase
-" In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
-" do not history when leavy buffer
 set hidden
 set nobackup
 set nowritebackup
@@ -103,92 +91,57 @@ set noswapfile
 set fileformats=unix,dos,mac
 set completeopt=menuone,longest,preview
 let mapleader = ','
-
 autocmd FileType php set keywordprg=pman
 
-" Plugins configarray_key_exists(
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/* 
-" Disable tComment to escape some entities
-let g:tcomment#replacements_xml={}
-" Ultisnip
-" NOTE: <f1> otherwise it overrides <tab> forever
-let g:UltiSnipsExpandTrigger="<f1>"
-let g:UltiSnipsJumpForwardTrigger="<f1>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:did_UltiSnips_vim_after = 1
+" Plugins config
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
-let g:syntastic_php_checkers = ['php']
+
 let FILETAG=expand("./tags")
 if filereadable(FILETAG)
   set tags=tags
 endif
+
+
+
 " Shortcuts
 " Vim specifics :
 " Buffers
-nnoremap <C-g> :bnext<CR>
-nnoremap <C-f> :bprevious<CR>
-nnoremap <C-d> :call CleanClose()<CR>
-" Undo, Redo
-nnoremap <C-z>  :undo<CR>
-nnoremap <C-y>  :redo<CR>
-inoremap <C-z>  <Esc>:undo<CR>i
-inoremap <C-y>  <Esc>:redo<CR>i
-" Tabs
-nnoremap <M-b>  :tabprevious<CR>
-inoremap <M-b>  <Esc>:tabprevious<CR>i
-nnoremap <M-n>  :tabnext<CR>
-inoremap <M-n>  <Esc>:tabnext<CR>i
-nnoremap <M-t>  :tabnew<CR>
-inoremap <M-t>  <Esc>:tabnew<CR>i
-nnoremap <M-k>  :tabclose<CR>
-inoremap <M-k>  <Esc>:tabclose<CR>i
+nnoremap <Leader>g :bnext<CR>
+nnoremap <Leader>f :bprevious<CR>
+nnoremap <Leader>d :call CleanClose()<CR>
 " Splitted windows
-nnoremap <M-&> :vsp<CR>
-nmap <silent> <M-Left> :wincmd h<CR>
-nmap <silent> <M-Right> :wincmd l<CR>
-" Ctags
+nnoremap <leader>& :vsp<CR>
+nmap <silent> <Leader>h :wincmd h<CR>
+nmap <silent> <Leader>l :wincmd l<CR>
 
-nnoremap <M-Up>  <C-]>
-nnoremap <M-Down>  <C-T>
-
-:map <C-i> i_<Esc>r
-:map <C-a> a_<Esc>r
+:map <Leader>i i_<Esc>r
+:map <Leader>a a_<Esc>r
 
 " Plugins specifics
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+" Use <Leader>L to clear the highlighting of :set hlsearch.
+if maparg('<C-l>', 'n') ==# ''
+  nnoremap <silent> <C-l> :nohlsearch<CR>
 endif
 " NERDTreeToggle
-nnoremap <M-e> :NERDTreeToggle<CR>
-inoremap <M-e> <Esc>:NERDTreeToggle<CR>i
-" CtrlP => becomes AltO ;)
-nnoremap <M-o> :CtrlP<CR>
-inoremap <M-o> <Esc>:CtrlP<CR>
-" Easy scratch
-nnoremap <M-s> :Scratch<CR>
-inoremap <M-s> <Esc>:Scratch<CR>
-"Tag list
-nnoremap <M-i> :TlistToggle<CR>
-inoremap <M-i> <Esc>:TlistToggle<CR>
+nnoremap <Leader>e :NERDTreeToggle<CR>
+inoremap <Leader>e <Esc>:NERDTreeToggle<CR>i
+" CtrlP
+nnoremap <Leader>p :CtrlP<CR>
+inoremap <Leader>p <Esc>:CtrlP<CR>
 " Multiple cursor
 let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-a>'
-let g:multi_cursor_prev_key='<C-s>'
-let g:multi_cursor_skip_key='<C-q>'
+let g:multi_cursor_next_key='<Leader>a'
+let g:multi_cursor_prev_key='<Leader>s'
+let g:multi_cursor_skip_key='<Leader>q'
 let g:multi_cursor_quit_key='<Esc>'
 " Git
 noremap  <M-g> :GitGutterToggle<CR>
 " YankRing
-nnoremap <M-p> :YRShow<CR>
-" Rainbow parenthesis
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+nnoremap <Leader>o :YRShow<CR>
 
 " TODO : move to more appropriate place
 function! CleanClose()
@@ -205,9 +158,6 @@ if (bufnr("%") == todelbufNr)
 endif
 exe "bd!".todelbufNr
 endfunction
-
-" Bug with lastly used taglist ?
-:iunmap é
 
 :command! Cs :e ~/Tools/MyVimrc/cheatsheet.md
 :command! Vrc :e ~/.vimrc
